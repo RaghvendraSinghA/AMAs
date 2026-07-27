@@ -23,7 +23,8 @@
 	  Output—>
 
       00:00.0 Host bridge: Intel Corporation Device
-			The host bridge is the connection between the CPU and the PCI/PCIe devices.
+			The host bridge is the connection between the CPU and the PCI/PCIe devices
+				bus.
 	  
 	  00:02.0 VGA compatible controller: Intel UHD Graphics
 	  00:14.0 USB controller: Intel USB 3.0 eXtensible Host Controller
