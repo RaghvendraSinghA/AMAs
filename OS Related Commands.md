@@ -137,6 +137,14 @@
   ### top
     top—>shows resources usage by processes.Resources means CPU,GPU,memory,RAM etc.
           It runs continiously.Use `top -l 1` to get one snapshot.
+
+	Before goinf further we should know these two.They are important.
+
+	daemon process-->A daemon is a background process that provides a service to other 
+						processes or application and usually runs continuously.
+						It starts when the system boots (or when needed) and waits for work.
+						It starts without terminal.
+							e.g. sshd,httpd/nginx, cron job etc.
 		  
     zombie process--> A process whose parent forget to collect its exit status.It doesn't uses cpu,
 				ram,memory but only stays in log of OS. When parent collects its child exit
