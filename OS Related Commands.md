@@ -11,6 +11,8 @@
 # Some important OS commands.
 
   ### lspci
+  	We will start with lspci which tells about devices connected to ur motherboard
+		through pci bus.
     
     lspci—>lists peripheral component Interconnnect.
 	     (shows infromation about connected device to ur motherboard like Network card,
@@ -20,12 +22,14 @@
 
 	  Output—>
 
-    00:00.0 Host bridge: Intel Corporation Device
+      00:00.0 Host bridge: Intel Corporation Device
+			The host bridge is the connection between the CPU and the PCI/PCIe devices.
+	  
 	  00:02.0 VGA compatible controller: Intel UHD Graphics
 	  00:14.0 USB controller: Intel USB 3.0 eXtensible Host Controller
 	  00:1f.6 Ethernet controller: Intel Ethernet Connection
 	
-  	00:00.0
+  	00:00.0	--> PCI address simillar to port.
 
     00->Bus number.
     00-->Device number on bus.
@@ -33,7 +37,7 @@
 
     ***Not in mac , In mac we use --> `system_profiler SPHardwareDataType` (works better)
 
-    Other commands is lscpu for cpu connected devices information.It shows cpu architecture.
+    Other commands is lscpu for cpu-connected devices information.It shows cpu architecture.
     (Not in macOS).
        Again in mac we use--> `system_profiler SPHardwareDataType` .
 
@@ -42,12 +46,10 @@
 
 
   ### uname
-    It stands for unix name.
-    
-	  uname -a —>tells everything about system,Its like using all below mentioned commands.
-	  uname -s —> for kernel name
-	  uname -r —>kernel release.
-	  uname -v —-> kernel version.
+    It stands for unix name.We use it to know about our OS information.
+	  uname --> Shows unix name.linux or darwin(macOs)    
+	  uname -s —> for unix kernel/OS name e.g. linux or darwin.
+	  uname -r —>for unix kernel/OS version.
 	  uname -m —> for CPU architecture.
     
 					x86_32/64 followed by intel processors.       (windows,old macs, all phones).
@@ -55,6 +57,10 @@
 					
 					arm for power efficiency so it uses less battery and heats less and bit slow.
 					x86 for performance,it uses more batter and heat more.
+
+	   uname -a —>tells everything about system,Its like using all above mentioned commands.
+
+	   
   ### df
     df—>The df command stands for Disk Filesystem. It shows total disk space and disk usage.
 
@@ -63,10 +69,11 @@
     df	Show disk usage
     df -h	Human-readable sizes (KB, MB, GB, TB)
     df -H	Human-readable (uses powers of 1000 instead of 1024) e.g. 1000kb,1000mb,1000Gb
-    df -T	Show filesystem type (Linux)
-    df -i	Show inode usage
+    df -T	Show filesystem type like ext4,xfs etc. It also adds column to report to show fs type.
+    df -i	Show inode usage.It shows total number of files connected to total number of inodes.
+			Each file is stored on 1 inode.To create a new file inode and disk both should be free.
+			
     df -a	Show all filesystems, including pseudo filesystems
-    df --help	Show help
 
   ### free
     free —> It tells RAM & swap memory usage.runs once and gives snapshot.
@@ -85,8 +92,8 @@
 
   ### ps
     
-    ps stands for Process Status. It is a Linux command used to display information about currently 
-    running processes.
+    ps stands for Process Status. It is a Linux command used to display information about
+	currently running processes.
     Unlike top, which keeps refreshing, ps gives a snapshot of processes at the moment you run it.
     good for script,runs once and exit.Not interactive like top.
 
@@ -111,6 +118,7 @@
     * UID → User who owns the process
     * PPID → Parent process ID
     * TTY—>terminal associated with it.
+			TTY = ? , means process started by system,cron jobs,web server without any terminal.
 
     --->Most commonly used
 
@@ -127,9 +135,17 @@
 
   ### top
     top—>shows resources usage by processes.Resources means CPU,GPU,memory,RAM etc.
-          It runs continiously.
+          It runs continiously.Use `top -l 1` to get one snapshot.
+		  
+    zombie process--> A process whose parent forget to collect its exit status.It doesn't uses cpu,
+				ram,memory but only stays in log of OS. When parent collects its child exit
+				status then only OS cleans the child from system.Simillar to when ur parents
+				forgot to pick u from school in backdays.
 
-    top in terminal.
+			  These are harmless but, can full process table.Always a child process goes in
+			  zombie mode.
+
+    Execute top in terminal.
 
     output-->
 
@@ -145,7 +161,8 @@
 
     Meaning of important fields
     top --> command name.
-    up	--> System uptime
+	10:30:01 --> current system time. o' clock.
+    up	--> System uptime, 2 days and 3:15 hours.
     load average -->	CPU load over the last 1, 5, and 15 minutes
     Tasks -->	Number of running, sleeping, stopped, and zombie processes
     %Cpu(s) -->	CPU usage
@@ -167,7 +184,10 @@
     %CPU	    CPU usage
     %MEM	    RAM usage
     TIME+	    Total CPU time used
-    COMMAND	  Process name
+    COMMAND	    Process-name
+
+
+	
     Common     flags
 
     top	Start live monitoring
@@ -177,11 +197,12 @@
     top -n <count>	Exit after a certain number of updates (Linux)
     top -b	Batch mode (useful for scripts)Not interactive, plain text, one snapshot and exit.
                           Not in Mac OS.In Mac we can use top -l 1 or top -l 1 > system_report.
-                            txt to get one snapshot, we can also use “ps aux”command for single snapshot.
-    top -o %CPU	Sort by CPU usage (Linux)
+                            txt to get one snapshot, we can also use “ps aux”command for 
+								single snapshot.
+    top -o %CPU	Sort by CPU usage (Linux)	for macOS remove % from %CPU.
     top -o %MEM	Sort by memory usage (Linux)
     
-    Interactive keys
+    Interactive keys (These doesn't work in macOS). We use above commands to sort or htop.
     While top is running:
     Key	Action
     q	Quit
@@ -195,8 +216,9 @@
 
   ### kill
       It is used to kill process.can be used alone or with top by pressing k in interactive mode.
+	  top + k on interactive mode doesn't work in macOs,we use htop or get pid from top then kill.
 
-    Syntax-->  kill pid or kill signal pid
+    Syntax-->  kill pid or kill signal pid or kill signalname pid.
     	
       Number	  Signal	              Meaning	
       1	   SIGHUP (Hang Up)	  Terminal disconnected	Often tells a service to reload
@@ -205,9 +227,9 @@
       3	   SIGQUIT (Quit)	    Stops the process and may create a core dump for debugging
       6	   SIGABRT (Abort)	   Abort Process intentionally crashes itself, usually for debugging
       9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored)
-      14	 SIGALRM (Alarm)	   Alarm timer expired Sent when a timer set by a process finishes.
+     14	 SIGALRM (Alarm)	   Alarm timer expired Sent when a timer set by a process finishes.
                                 process sets alarm on OS that notify me after 10s or 5s.
-      15	 SIGTERM (Terminate)	Normal termination Requests the process to close gracefully
+     15	 SIGTERM (Terminate)	Normal termination Requests the process to close gracefully
     
     
 
