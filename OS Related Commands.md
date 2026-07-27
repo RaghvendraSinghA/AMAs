@@ -1,0 +1,217 @@
+# What is OS?
+  So, before knowing OS related commands we should know what is OS.So, OS is system/application which starts
+  when your PC boots.It controls everything,CPU,GPU,keyboard,camera,application,memory.Its not like when u
+  want to use camera/processor/audio then u open laptop with screw-driver and Turn-On its power button.
+
+  ### Command to check what is ur OS?
+      uname (linux)      --> unix name. macOS(darwin) , linux(linux)
+      ver (windows)      --> version. Windows(Microsoft windows)
+
+  
+# Some important OS commands.
+
+  ### lspci
+    
+    lspci—>lists peripheral component Interconnnect.
+	     (shows infromation about connected device to ur motherboard like Network card,
+            Graphic card,USB card etc.)
+	
+	  Execute `lspci` in terminal.
+
+	  Output—>
+
+    00:00.0 Host bridge: Intel Corporation Device
+	  00:02.0 VGA compatible controller: Intel UHD Graphics
+	  00:14.0 USB controller: Intel USB 3.0 eXtensible Host Controller
+	  00:1f.6 Ethernet controller: Intel Ethernet Connection
+	
+  	00:00.0
+
+    00->Bus number.
+    00-->Device number on bus.
+    0-->Function number.It shows graphic function,audio function etc.
+
+    ***Not in mac , In mac we use --> `system_profiler SPHardwareDataType` (works better)
+
+    Other commands is lscpu for cpu connected devices information.It shows cpu architecture.
+    (Not in macOS).
+       Again in mac we use--> `system_profiler SPHardwareDataType` .
+
+
+
+
+
+  ### uname
+    It stands for unix name.
+    
+	  uname -a —>tells everything about system,Its like using all below mentioned commands.
+	  uname -s —> for kernel name
+	  uname -r —>kernel release.
+	  uname -v —-> kernel version.
+	  uname -m —> for CPU architecture.
+    
+					x86_32/64 followed by intel processors.       (windows,old macs, all phones).
+					arm_64 followed by silicon based processors.  (all phones,servers,new macs)
+					
+					arm for power efficiency so it uses less battery and heats less and bit slow.
+					x86 for performance,it uses more batter and heat more.
+  ### df
+    df—>The df command stands for Disk Filesystem. It shows total disk space and disk usage.
+
+    Common flags
+    
+    df	Show disk usage
+    df -h	Human-readable sizes (KB, MB, GB, TB)
+    df -H	Human-readable (uses powers of 1000 instead of 1024) e.g. 1000kb,1000mb,1000Gb
+    df -T	Show filesystem type (Linux)
+    df -i	Show inode usage
+    df -a	Show all filesystems, including pseudo filesystems
+    df --help	Show help
+
+  ### free
+    free —> It tells RAM & swap memory usage.runs once and gives snapshot.
+	  -h—> human readable
+	  -m—>in MB
+	  -g—>in GB
+	  -m—>in mb
+	  -k—>in Kb
+	  --tera—> in tera
+	  -s count —> refreshes table each second
+				e.g. free -s 2 -c 5 (Every two seconds,do 5 times)
+				e.g. free -s 2 (Every two seconds)
+
+    ***Not in mac, In mac we use top or `sysctl -n hw.memsize`
+
+
+  ### ps
+    
+    ps stands for Process Status. It is a Linux command used to display information about currently 
+    running processes.
+    Unlike top, which keeps refreshing, ps gives a snapshot of processes at the moment you run it.
+    good for script,runs once and exit.Not interactive like top.
+
+  
+    Q—>Why ps shows only one PID?
+    Ans—>By default, ps shows only the processes attached to your current terminal (TTY).
+          Shows processes started by your current terminal,not other users terminals or system.
+
+    -->How to show all processes.
+	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
+           of which terminal or user started them.
+
+    --->How to check detailed process list
+      ans-->  ps -f
+
+    Shows full format:
+
+    UID   PID  PPID  C  STIME TTY CMD
+    root  1    0     0  10:00 ?   systemd
+
+    Extra columns:
+    * UID → User who owns the process
+    * PPID → Parent process ID
+    * TTY—>terminal associated with it.
+
+    --->Most commonly used
+
+      ps aux
+
+    Shows almost all processes with detailed information.
+
+    In ps aux, x shows processes started by system without any terminal when pc booted.
+
+    We can also store ps command output in some file to run scripts.
+    `ps >> Practice/test.md`
+
+
+
+  ### top
+    top—>shows resources usage by processes.Resources means CPU,GPU,memory,RAM etc.
+          It runs continiously.
+
+    top in terminal.
+
+    output-->
+
+    top - 10:30:01 up 2 days,  3:15,  2 users,  load average: 0.15, 0.10, 0.05
+    Tasks: 220 total,   1 running, 219 sleeping
+    %Cpu(s):  8.0 us, 2.0 sy, 90.0 id
+    MiB Mem : 15920 total, 4200 used, 11720 free
+    MiB Swap: 2048 total, 2048 free
+
+     PID USER   PR NI  VIRT   RES   SHR S %CPU %MEM TIME+ COMMAND
+     1234 root   20  0  500M   40M   10M S  5.2  0.3  0:12 nginx
+     5678 user   20  0 1200M  200M   50M S 25.0  1.2  3:45 chrome
+
+    Meaning of important fields
+    top --> command name.
+    up	--> System uptime
+    load average -->	CPU load over the last 1, 5, and 15 minutes
+    Tasks -->	Number of running, sleeping, stopped, and zombie processes
+    %Cpu(s) -->	CPU usage
+    Mem	--> RAM usage
+    Swap -->	Swap memory usage
+    
+    table
+    Column	  Meaning
+    PID	      Process ID
+    USER	    Process owner
+    PR	      Priority
+    NI	      Nice value is User given priority value by nice command but, Linux decides process priority
+                by itself using given nice value and PR shows CPUs decided priority value.
+    VIRT	    Virtual memory used
+    
+    RES	      Physical RAM used
+    SHR	      Shared memory
+    S	        Process state (R, S, D, T, Z)
+    %CPU	    CPU usage
+    %MEM	    RAM usage
+    TIME+	    Total CPU time used
+    COMMAND	  Process name
+    Common     flags
+
+    top	Start live monitoring
+    top -h	Show help (Linux)
+    top -u <user>	Show processes for a specific user
+    top -p <PID>	Monitor a specific process
+    top -n <count>	Exit after a certain number of updates (Linux)
+    top -b	Batch mode (useful for scripts)Not interactive, plain text, one snapshot and exit.
+                          Not in Mac OS.In Mac we can use top -l 1 or top -l 1 > system_report.
+                            txt to get one snapshot, we can also use “ps aux”command for single snapshot.
+    top -o %CPU	Sort by CPU usage (Linux)
+    top -o %MEM	Sort by memory usage (Linux)
+    
+    Interactive keys
+    While top is running:
+    Key	Action
+    q	Quit
+    P	Sort by CPU usage
+    M	Sort by memory usage
+    k	Kill a process (top + kill together)Not supported in macOS. 
+                          Install htop in Mac or find pid with top + grep then kill.
+    h	Help
+    1	Show CPU usage for each core (Linux)
+    
+
+  ### kill
+      It is used to kill process.can be used alone or with top by pressing k in interactive mode.
+
+    Syntax-->  kill pid or kill signal pid
+    	
+      Number	  Signal	              Meaning	
+      1	   SIGHUP (Hang Up)	  Terminal disconnected	Often tells a service to reload
+                                its configuration
+      2	   SIGINT (Interrupt)	 Interrupt	Same as pressing Ctrl + C in a terminal
+      3	   SIGQUIT (Quit)	    Stops the process and may create a core dump for debugging
+      6	   SIGABRT (Abort)	   Abort Process intentionally crashes itself, usually for debugging
+      9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored)
+      14	 SIGALRM (Alarm)	   Alarm timer expired Sent when a timer set by a process finishes.
+                                process sets alarm on OS that notify me after 10s or 5s.
+      15	 SIGTERM (Terminate)	Normal termination Requests the process to close gracefully
+    
+    
+
+
+  
+
+  
