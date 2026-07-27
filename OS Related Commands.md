@@ -225,7 +225,8 @@
                                 its configuration
       2	   SIGINT (Interrupt)	 Interrupt	Same as pressing Ctrl + C in a terminal
       3	   SIGQUIT (Quit)	    Stops the process and may create a core dump for debugging
-      6	   SIGABRT (Abort)	   Abort Process intentionally crashes itself, usually for debugging
+      6	   SIGABRT (Abort)	   Abort Process intentionally crashes itself, usually for debugging.
+	  							This command is used by program.Own or other.
       9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored)
      14	 SIGALRM (Alarm)	   Alarm timer expired Sent when a timer set by a process finishes.
                                 process sets alarm on OS that notify me after 10s or 5s.
