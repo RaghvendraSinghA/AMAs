@@ -213,12 +213,15 @@
     top -u <user>	Show processes for a specific user
     top -p <PID>	Monitor a specific process
     top -n <count>	Exit after a certain number of updates (Linux)
-    top -b	Batch mode (useful for scripts)Not interactive, plain text, one snapshot and exit.
+    top -b	Batch mode (useful for scripts) Not interactive, plain text output
+			but continiously in terminal one after other.
+			(top -b -n 1 for one snapshot and exit)
                           Not in Mac OS.In Mac we can use top -l 1 or top -l 1 > system_report.
                             txt to get one snapshot, we can also use “ps aux”command for 
 								single snapshot.
-    top -o %CPU	Sort by CPU usage (Linux)	for macOS remove % from %CPU.
-    top -o %MEM	Sort by memory usage (Linux)
+								
+     top -o %CPU	Sort by CPU usage (Linux)	for macOS remove % from %CPU.
+     top -o %MEM	Sort by memory usage (Linux)
     
     Interactive keys (These doesn't work in macOS). We use above commands to sort or htop.
     While top is running:
