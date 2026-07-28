@@ -12,7 +12,7 @@
 
   ### lspci
   	We will start with lspci which tells about devices connected to ur motherboard
-		through pci.
+		through pci bus.
     
     lspci—>lists peripheral component Interconnnect.
 	     (shows infromation about connected device to ur motherboard like Network card,
