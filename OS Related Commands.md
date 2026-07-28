@@ -120,13 +120,21 @@
     * PPID → Parent process ID
     * TTY—>terminal associated with it.
 			TTY = ? , means process started by system,cron jobs,web server without any terminal.
+	* C -> Number of CPU usage.
 
-    --->Most commonly used
+
+	 some basic commands-->
+		ps -c appname --> shows pid of app (not in macOS) have to use pgrep.
+		ps -p pid --> shows only that process details. (not in macOS)
+
+   	 --->Most commonly used
 
       ps aux
 
     Shows almost all processes with detailed information.
-
+	
+	a--> all prcoesses.
+	u--> show user information too.
     In ps aux, x shows processes started by system without any terminal when pc booted.
 
     We can also store ps command output in some file to run scripts.
@@ -135,7 +143,8 @@
 
 
   ### top
-    top—>shows resources usage by processes.Resources means CPU,GPU,memory,RAM etc.
+    top—>It also shows process information.But, with resources usage like RAM,CPU etc and continious too.
+				ps doesn't show resources usage.
           It runs continiously.Use `top -l 1` to get one snapshot.
 
 	Before goinf further we should know these two.They are important.
@@ -219,6 +228,10 @@
     M	Sort by memory usage
     k	Kill a process (top + kill together)Not supported in macOS. 
                           Install htop in Mac or find pid with top + grep then kill.
+						  STEPS:
+						  1.top then press k then write id in prompt then enter then write signalid then enter.
+						  2.top then press k then highlight id then enter then enter.
+						  
     h	Help
     1	Show CPU usage for each core (Linux)
     
@@ -230,22 +243,22 @@
     Syntax-->  kill pid or kill signal pid or kill signalname pid.
     	
       Number	  Signal	              Meaning	
-      1	   SIGHUP (Hang Up)	  Terminal disconnected	Often tells a service to reload
-                                its configuration
-								
-      2	   SIGINT (Interrupt)	 Interrupt	Same as pressing Ctrl + C in a terminal
+      1	   SIGHUP (Hang Up)	      Terminal, Often tells a service to reload
+                                   its configuration without closing.
 	  
-      3	   SIGQUIT (Quit)	    Stops the process and may create a core dump for debugging
+      3	   SIGQUIT (Quit)	     Stops the process and create a core dump for debugging. .log file
 	  
-      6	   SIGABRT (Abort)	   Abort Process intentionally crashes itself, usually for debugging.
-	  							This command is used by program.Own or other.
+      6	   SIGABRT (Abort)	     Abort Process intentionally crashes itself, usually for debugging.
+	  							  This command is used by program.Own or other.
 								
-      9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored)
+      9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored).
+	  								Stop but no-grace.
 	  
-     14	 SIGALRM (Alarm)	   Alarm timer expired Sent when a timer set by a process finishes.
-                                process sets alarm on OS that notify me after 10s or 5s.
+     14	 SIGALRM (Alarm)	     Alarm timer expired Sent when a timer set by a process finishes.
+                                  process sets alarm on OS that notify me after 10s or 5s.
+								  Used for retry mechanism.
 								
-     15	 SIGTERM (Terminate)	Normal termination Requests the process to close gracefully
+     15	 SIGTERM (Terminate)	 Normal termination Requests the process to close gracefully.Save and exit safely.
     
     
 
