@@ -14,7 +14,7 @@
   
 # Some important OS commands.
 
-  ### lspci
+  ### lspci	(Hardware specific)
   	We will start with lspci which tells about devices connected to ur motherboard
 		through pci bus.
     
