@@ -1,7 +1,11 @@
+> Hi everyone I am [name], I am going to explain u OS related Commands.
+
+
 # What is OS?
-  So, before knowing OS related commands we should know what is OS.So, OS is system/application which starts
-  when your PC boots.It controls everything,CPU,GPU,keyboard,camera,application,memory.Its not like when u
-  want to use camera/processor/audio then u open laptop with screw-driver and Turn-On its power button.
+  So, before knowing OS related commands we should know what is OS. So,OS stands for operating system.
+  It is system/application which starts when you start your Computer. It controls everything like                    CPU,GPU,keyboard,camera,application,memory.
+  It is an interface between user, software and hardware.Even it is interface between ur software
+  and hardware.
 
   ### Command to check what is ur OS?
       uname (linux)      --> unix name. macOS(darwin) , linux(linux)
@@ -23,7 +27,7 @@
 	  Output—>
 
       00:00.0 Host bridge: Intel Corporation Device
-			The host bridge is the connection between the CPU and the PCI/PCIe devices
+			The host bridge is connection between CPU and PCI/PCIe devices
 				bus.
 	  
 	  00:02.0 VGA compatible controller: Intel UHD Graphics
@@ -47,10 +51,9 @@
 
 
   ### uname
-    It stands for unix name.We use it to know about our OS information.
+    It stands for unix name.It tells information about unix e.g. linux(unix type) ,dariwn,oracle solaris, netBSD.
 	  uname --> Shows unix name.linux or darwin(macOs)    
-	  uname -s —> for unix kernel/OS name e.g. linux or darwin.
-	  uname -r —>for unix kernel/OS version.
+	  uname -r —>for unix kernel version. e.g. 6.15.12
 	  uname -m —> for CPU architecture.
     
 					x86_32/64 followed by intel processors.       (windows,old macs, all phones).
@@ -67,12 +70,13 @@
 
     Common flags
     
-    df	Show disk usage
-    df -h	Human-readable sizes (KB, MB, GB, TB)
+    df	Show disk usage (in mac shared)
+    df -h	Human-readable sizes, Mix of all(KB, MB, GB, TB). df -g for gb (df -BG in linux)
     df -H	Human-readable (uses powers of 1000 instead of 1024) e.g. 1000kb,1000mb,1000Gb
     df -T	Show filesystem type like ext4,xfs etc. It also adds column to report to show fs type.
     df -i	Show inode usage.It shows total number of files connected to total number of inodes.
 			Each file is stored on 1 inode.To create a new file inode and disk both should be free.
+			(default in macOs, always shows)
 			
     df -a	Show all filesystems, including pseudo filesystems
 
@@ -90,13 +94,17 @@
 
     ***Not in mac, In mac we use top or `sysctl -n hw.memsize`
 
+	Output-->
+	
+	total        used        free      shared  buff/cache   available
+	Mem:         7982528     2456780     1023456      123456     4502292     5123456
+	Swap:        2097148           0     2097148
+
 
   ### ps
     
     ps stands for Process Status. It is a Linux command used to display information about
-	currently running processes.
-    Unlike top, which keeps refreshing, ps gives a snapshot of processes at the moment you run it.
-    good for script,runs once and exit.Not interactive like top.
+	currently running processes.runs once and gives snapshot and exit.
 
   
     Q—>Why ps shows only one PID?
@@ -131,11 +139,11 @@
 
       ps aux
 
-    Shows almost all processes with detailed information.
+    Shows all processes with detailed information even processes started without terminal.
 	
 	a--> all prcoesses.
 	u--> show user information too.
-    In ps aux, x shows processes started by system without any terminal when pc booted.
+    x--> shows processes started by system without any terminal when pc booted.
 
     We can also store ps command output in some file to run scripts.
     `ps >> Practice/test.md`
@@ -144,10 +152,10 @@
 
   ### top
     top—>It also shows process information.But, with resources usage like RAM,CPU etc and continious too.
-				ps doesn't show resources usage.
+				ps doesn't show resources usage, also ps runs once only.
           It runs continiously.Use `top -l 1` to get one snapshot.
 
-	Before goinf further we should know these two.They are important.
+	Before going further we should know these two, just for knowledge.
 
 	daemon process-->A daemon is a background process that provides a service to other 
 						processes or application and usually runs continuously.
@@ -194,7 +202,8 @@
     PR	      Priority
     NI	      Nice value is User given priority value by nice command but, Linux decides process priority
                 by itself using given nice value and PR shows CPUs decided priority value.
-    VIRT	    Virtual memory used
+				
+    VIRT	    Virtual memory used.Total RAM+swap memory allowed to use in future if required.
     
     RES	      Physical RAM used
     SHR	      Shared memory
