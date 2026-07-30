@@ -331,6 +331,8 @@ sys.exit(0)                            # Exit with success status code
 
 ```
 	This will start and run normally untill someone executes kill PID.
+
+## Special Thanks to ChatGPT gupta
     
 
 
