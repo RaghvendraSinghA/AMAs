@@ -69,7 +69,7 @@
 	  uname -r —>for unix kernel version. e.g. 6.15.12
 	  uname -m —> for CPU architecture.
     
-					x86_32/64 followed by intel processors.       (windows,old macs, all phones).
+					x86_32/64 followed by intel processors.       (windows,old macs, no phones).
 						x86 bcoz all chip names who r used inside it had last 2 numbers as 86.
 					arm_64 followed by silicon based processors.  (all phones,servers,new macs)
 					
