@@ -57,10 +57,12 @@
 	  uname -m —> for CPU architecture.
     
 					x86_32/64 followed by intel processors.       (windows,old macs, all phones).
+						x86 bcoz all chip names who r used inside it had last 2 numbers as 86.
 					arm_64 followed by silicon based processors.  (all phones,servers,new macs)
 					
 					arm for power efficiency so it uses less battery and heats less and bit slow.
 					x86 for performance,it uses more batter and heat more.
+					
 
 	   uname -a —>tells everything about system,Its like using all above mentioned commands.
 
