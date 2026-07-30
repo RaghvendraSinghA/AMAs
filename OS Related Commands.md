@@ -21,7 +21,20 @@
     lspci—>lists peripheral component Interconnnect.
 	     (shows infromation about connected device to ur motherboard like Network card,
             Graphic card,USB card etc.)
+
+
+	lspci Hardware level view -->
+
+<img src="./pci_hard.jpeg" alt="hardware_view" width="90%">
 	
+	 
+	 
+	 
+	 lspci Diagram view -->
+<img src="pci_diag.png" alt="Diagram" width="90%">
+
+	  
+	  
 	  Execute `lspci` in terminal.
 
 	  Output—>
@@ -257,23 +270,67 @@
     Syntax-->  kill pid or kill signal pid or kill signalname pid.
     	
       Number	  Signal	              Meaning	
-      1	   SIGHUP (Hang Up)	      Terminal, Often tells a service to reload
-                                   its configuration without closing.
+      1	    SIGHUP (Hang Up)	      Terminal, Often tells a service to reload
+                                     its configuration without closing.
 	  
-      3	   SIGQUIT (Quit)	     Stops the process and create a core dump for debugging. .log file
+      3	    SIGQUIT (Quit)	     Stops the process and create a core dump for debugging eg-->.log file
 	  
-      6	   SIGABRT (Abort)	     Abort Process intentionally crashes itself, usually for debugging.
-	  							  This command is used by program.Own or other.
+      6	    SIGABRT (Abort)	     Abort Process intentionally crashes itself, usually for debugging.
+	  							  This command is used by program.Current program or other program.
 								
-      9	   SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored).
-	  								Stop but no-grace.
+      9	    SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored).
+	  								Stops process without grace.
 	  
-     14	 SIGALRM (Alarm)	     Alarm timer expired Sent when a timer set by a process finishes.
+     14	    SIGALRM (Alarm)	     Alarm timer expired Sent when a timer set by a process finishes.
                                   process sets alarm on OS that notify me after 10s or 5s.
 								  Used for retry mechanism.
 								
-     15	 SIGTERM (Terminate)	 Normal termination Requests the process to close gracefully.Save and exit safely.
-    
+     15	  SIGTERM (Terminate)	 Normal termination Requests the process to close gracefully.Save and exit safely.
+
+	Q-->Where we use these kill commands in real world?  
+	
+	Ans-->	We use these in backend e.g. ( webservers , microservices)
+
+```python
+
+import signal      # Lets the program receive OS signals like SIGTERM
+import time        # Used for sleep()
+import sys         # Used to exit the program
+
+running = True     # Flag that controls the main loop
+
+
+# This function will run automatically when SIGTERM is received
+def shutdown(signum, frame):
+    global running                     # Modify the global variable
+    print("Received SIGTERM. Shutting down...")
+    running = False                    # Tell the loop to stop
+
+#---END OF FUnction defination
+
+
+# Register the shutdown function in backend application using python.
+signal.signal(signal.SIGTERM, shutdown)
+
+
+# Main application loop
+while running:
+    print("Working...")                # Simulate doing some work
+    time.sleep(1)                      # Wait for 1 second
+
+#---END of loop defination
+
+
+# These lines run after the loop exits
+print("Closing files...")              # Close any open files here
+print("Closing database...")           # Close database connections here
+print("Exiting...")
+
+sys.exit(0)                            # Exit with success status code
+
+
+```
+	This will start and run normally untill someone executes kill PID.
     
 
 
