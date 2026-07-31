@@ -35,7 +35,7 @@
 
 	  
 	  
-	  Execute `lspci` in terminal.
+	  Execute `lspci` in terminal.	(ioreg -l )
 
 	  Output—>
 
@@ -53,14 +53,8 @@
     00-->Device number on bus.
     0-->Function number.It shows graphic function,audio function etc.
 
-    ***Not in mac , In mac we use --> `system_profiler SPHardwareDataType` (works better)
-
     Other commands is lscpu for cpu-connected devices information.It shows cpu architecture.
     (Not in macOS).
-       Again in mac we use--> `system_profiler SPHardwareDataType` .
-
-
-
 
 
   ### uname
@@ -107,14 +101,13 @@
 				e.g. free -s 2 -c 5 (Every two seconds,do 5 times)
 				e.g. free -s 2 (Every two seconds)
 
-    ***Not in mac, In mac we use top or `sysctl -n hw.memsize`
-
-	Output-->
+	Output--> (linux)
 	
 	total        used        free      shared  buff/cache   available
 	Mem:         7982528     2456780     1023456      123456     4502292     5123456
 	Swap:        2097148           0     2097148
 
+	***Not in mac, In mac we use top or `sysctl -n hw.memsize`
 
   ### ps
     
@@ -122,9 +115,9 @@
 	currently running processes.runs once and gives snapshot and exit.
 
   
-    Q—>Why ps shows only one PID?
-    Ans—>By default, ps shows only the processes attached to your current terminal (TTY).
-          Shows processes started by your current terminal,not other users terminals or system.
+    Q—>Why ps shows only some PID?
+    Ans—>By default, ps shows only the processes started from your current terminal (TTY).
+          Shows processes started by your current terminal, not other users terminals or system.
 
     -->How to show all processes.
 	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
@@ -158,19 +151,10 @@
 	
 	a--> all prcoesses.
 	u--> show user information too.
-    x--> shows processes started by system without any terminal when pc booted.
 
-    We can also store ps command output in some file to run scripts.
-    `ps >> Practice/test.md`
-
-
-
-  ### top
-    top—>It also shows process information.But, with resources usage like RAM,CPU etc and continious too.
-				ps doesn't show resources usage, also ps runs once only.
-          It runs continiously.Use `top -l 1` to get one snapshot.
-
-	Before going further we should know these two, just for knowledge.
+	What is x in aux?
+	Ans --> x shows processes started by system without any terminal when pc booted. 
+			It shoes every process of system including daemon zombie.
 
 	daemon process-->A daemon is a background process that provides a service to other 
 						processes or application and usually runs continuously.
@@ -183,8 +167,17 @@
 				status then only OS cleans the child from system.Simillar to when ur parents
 				forgot to pick u from school in backdays.
 
-			  These are harmless but, can full process table.Always a child process goes in
+			  These are harmless but, can polute the process table.Always a child process goes in
 			  zombie mode.
+
+    `ps >> Practice/test.md`
+
+	We can also store ps command output in some file to run scripts.
+
+  ### top
+    top—>It also shows process information.But, with resources usage like RAM,CPU etc and continious too.
+				ps doesn't show resources usage, also ps runs once only.
+          It runs continiously.Use `top -l 1` to get one snapshot.
 
     Execute top in terminal.
 
@@ -276,14 +269,14 @@
       3	    SIGQUIT (Quit)	     Stops the process and create a core dump for debugging eg-->.log file
 	  
       6	    SIGABRT (Abort)	     Abort Process intentionally crashes itself, usually for debugging.
-	  							  This command is used by program.Current program or other program.
+	  							  This command is used by process itself mostly.
 								
       9	    SIGKILL (Kill)	     Force kill	Immediately terminates the process (cannot be ignored).
 	  								Stops process without grace.
 	  
      14	    SIGALRM (Alarm)	     Alarm timer expired Sent when a timer set by a process finishes.
                                   process sets alarm on OS that notify me after 10s or 5s.
-								  Used for retry mechanism.
+								  Used for retry mechanism by process.
 								
      15	  SIGTERM (Terminate)	 Normal termination Requests the process to close gracefully.Save and exit safely.
 
@@ -301,6 +294,7 @@ running = True     # Flag that controls the main loop
 
 
 # This function will run automatically when SIGTERM is received
+
 def shutdown(signum, frame):
     global running                     # Modify the global variable
     print("Received SIGTERM. Shutting down...")
@@ -326,13 +320,14 @@ print("Closing files...")              # Close any open files here
 print("Closing database...")           # Close database connections here
 print("Exiting...")
 
-sys.exit(0)                            # Exit with success status code
+sys.exit(0)                            # Exit with success status code, it remove current
+											 #running python file from system.
 
 
 ```
-	This will start and run normally untill someone executes kill PID.
+	This will start and run normally until someone executes kill PID.
 
-## Special Thanks to ChatGPT gupta
+
     
 
 
