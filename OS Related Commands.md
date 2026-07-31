@@ -23,7 +23,7 @@
             Graphic card,USB card etc.)
 
 
-	lspci Hardware level view -->
+	pci Hardware level view -->
 
 <img src="./pci_hard.jpeg" alt="hardware_view" width="90%">
 	
