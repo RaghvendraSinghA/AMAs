@@ -142,7 +142,7 @@
 
 
 	 some basic commands-->
-		ps -c appname --> shows pid of app (not in macOS) have to use pgrep.
+		ps -c appname --> shows pid of app (not in macOS) have to use pgrep -x appname
 		ps -p pid --> shows only that process details. (not in macOS)
 
    	 --->Most commonly used
