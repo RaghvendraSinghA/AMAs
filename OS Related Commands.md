@@ -294,9 +294,6 @@ import signal      # Lets the program receive OS signals like SIGTERM
 import time        # Used for sleep()
 import sys         # Used to exit the program
 
-
-
-
 # This function will run automatically when SIGTERM is received
 
 def shutdown(signum, frame):
@@ -310,7 +307,6 @@ def shutdown(signum, frame):
 
 	sys.exit(0)                            # Exit with success status code, it removes current
 											 #running python file from system.
-
 
 #---END OF FUnction defination
 
