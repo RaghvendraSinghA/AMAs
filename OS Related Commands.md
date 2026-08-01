@@ -58,7 +58,9 @@
 
 
   ### uname
-    It stands for unix name.It tells information about unix e.g. linux(unix type) ,dariwn,oracle solaris, netBSD.
+    It stands for unix name.It tells information about unix based OS 
+	e.g. linux(unix type) ,dariwn,oracle solaris, netBSD.
+	
 	  uname --> Shows unix name.linux or darwin(macOs)    
 	  uname -r —>for unix kernel version. e.g. 6.15.12
 	  uname -m —> for CPU architecture.
@@ -169,6 +171,8 @@
 
 			  These are harmless but, can polute the process table.Always a child process goes in
 			  zombie mode.
+
+			  z-status in output.
 
     `ps >> Practice/test.md`
 
@@ -290,7 +294,7 @@ import signal      # Lets the program receive OS signals like SIGTERM
 import time        # Used for sleep()
 import sys         # Used to exit the program
 
-running = True     # Flag that controls the main loop
+
 
 
 # This function will run automatically when SIGTERM is received
@@ -298,7 +302,15 @@ running = True     # Flag that controls the main loop
 def shutdown(signum, frame):
     global running                     # Modify the global variable
     print("Received SIGTERM. Shutting down...")
-    running = False                    # Tell the loop to stop
+
+
+	print("Closing files...")              # Close any open files here
+	print("Closing database...")           # Close database connections here
+	print("Exiting...")
+
+	sys.exit(0)                            # Exit with success status code, it removes current
+											 #running python file from system.
+
 
 #---END OF FUnction defination
 
@@ -308,20 +320,11 @@ signal.signal(signal.SIGTERM, shutdown)
 
 
 # Main application loop
-while running:
+while True:
     print("Working...")                # Simulate doing some work
     time.sleep(1)                      # Wait for 1 second
 
-#---END of loop defination
-
-
-# These lines run after the loop exits
-print("Closing files...")              # Close any open files here
-print("Closing database...")           # Close database connections here
-print("Exiting...")
-
-sys.exit(0)                            # Exit with success status code, it remove current
-											 #running python file from system.
+#---END of main loop defination
 
 
 ```
