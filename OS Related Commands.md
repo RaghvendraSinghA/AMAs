@@ -138,7 +138,7 @@
 
 
 
-	 -->How to show all processes.
+	 -->How to see all processes.
 	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
            of which terminal or user started them.
 		   
@@ -148,13 +148,13 @@
 
 	 some useful commands-->
 		ps -c appname --> shows pid of app (not in macOS) have to use pgrep -x appname
-		ps -p pid --> shows only that process details. (not in macOS)
+		ps -p pid --> shows only that process details.
 
 
 
    	 --->Most commonly used
 
-    ps aux (doesn't show parentID like -AF or -Ef)
+    ps aux (doesn't show parentID like -Af or -ef)
 
     Shows all processes with detailed information even processes started without terminal.
 	
