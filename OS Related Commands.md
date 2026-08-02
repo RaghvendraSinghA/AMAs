@@ -121,11 +121,7 @@
     Ans—>By default, ps shows only the processes started from your current terminal (TTY).
           Shows processes started by your current terminal, not other users terminals or system.
 
-    -->How to show all processes.
-	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
-           of which terminal or user started them.
-
-    --->How to check detailed process list
+    --->How to check detailed process list of current terminal
       ans-->  ps -f
 
     Shows full format:
@@ -140,14 +136,20 @@
 			TTY = ? , means process started by system,cron jobs,web server without any terminal.
 	* C -> Number of CPU usage.
 
+	 -->How to show all processes.
+	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
+           of which terminal or user started them.
+		   
+		 Note -->  ps -a only shows processes associated with a terminal from system.Different than -A.
 
-	 some basic commands-->
+
+	 some useful commands-->
 		ps -c appname --> shows pid of app (not in macOS) have to use pgrep -x appname
 		ps -p pid --> shows only that process details. (not in macOS)
 
    	 --->Most commonly used
 
-      ps aux
+    ps aux (doesn't show parentID like -AF or -Ef)
 
     Shows all processes with detailed information even processes started without terminal.
 	
