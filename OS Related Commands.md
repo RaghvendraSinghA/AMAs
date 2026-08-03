@@ -233,6 +233,12 @@
     COMMAND	    Process-name
 
 
+	Some important commands -->
+	
+	top -o %CPU	Sort by CPU usage (Linux)	for macOS remove % from %CPU.
+    top -o %MEM	Sort by memory usage (Linux)
+
+
 	
     Common     flags
 
@@ -248,8 +254,7 @@
                             txt to get one snapshot, we can also use “ps aux”command for 
 								single snapshot.
 								
-     top -o %CPU	Sort by CPU usage (Linux)	for macOS remove % from %CPU.
-     top -o %MEM	Sort by memory usage (Linux)
+    
     
     Interactive keys (These doesn't work in macOS). We use above commands to sort or htop.
     While top is running:
