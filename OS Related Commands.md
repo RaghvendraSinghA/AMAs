@@ -138,12 +138,9 @@
 
 
 
-	 -->How to see all processes.
-	   ans--> ps -e (or ps -A) shows all processes currently running on the system, regardless 
-           of which terminal or user started them.
-		   
-		 Note -->  ps -a only shows processes associated with a terminal from system.Different than -A.
-
+	 -->How to see all processes with parentID.
+	   ans--> ps -ef (or ps -Af) shows all processes currently running on the system with parentID, regardless 
+           of which terminal or user started.
 
 
 	 some useful commands-->
@@ -157,13 +154,9 @@
     ps aux (doesn't show parentID like -Af or -ef)
 
     Shows all processes with detailed information even processes started without terminal.
-	
-	a--> all prcoesses.
-	u--> show user information too.
 
-	What is x in aux?
-	Ans --> x shows processes started by system without any terminal when pc booted. 
-			It shoes every process of system including daemon zombie.
+	a-->all
+	u-->with user
 
 	daemon process-->A daemon is a background process that provides a service to other 
 						processes or application and usually runs continuously.
@@ -181,7 +174,9 @@
 
 			  z-status in output.
 
-    `ps >> Practice/test.md`
+    
+
+	Just remember ps -aef .It shows everything.
 
 	We can also store ps command output in some file to run scripts.
 
